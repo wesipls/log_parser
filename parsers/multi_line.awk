@@ -2,8 +2,20 @@
 
 # Usage: ./multi_line.awk -v start="START_PATTERN" -v end="END_PATTERN" input_file
 #
-# Prints everything between lines matching START_PATTERN and END_PATTERN,
+# Prints everything between lines matching START_PATTERN and END_PATTERN.
 # Checking for duplicates based on the second to last field (or last field if only one field exists).
+#
+# Usually multi line errors tend to look something like follows:
+#
+# ==================================================
+# [ERROR] 2024-01-01 12:00:00 Some error occurred
+# on trace id 12345
+# maybe everything has crashed
+# =================================================
+#
+# This script would print everything between the equal signs.
+#
+# If you have any other examples not covered by this script, please open an issue on GitHub.
 
 BEGIN {
     flag = 0
