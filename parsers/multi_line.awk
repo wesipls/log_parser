@@ -1,7 +1,9 @@
 #!/usr/bin/awk -f
-# This AWK script performs the same operation as the provided pipeline command.
-# - It extracts the lines between the appearance of "rror" and "=====" string patterns.
-# - It removes duplicate entries based on the last field of each line.
+
+# Usage: ./multi_line.awk -v start="START_PATTERN" -v end="END_PATTERN" input_file
+#
+# Prints everything between lines matching START_PATTERN and END_PATTERN,
+# Checking for duplicates based on the second to last field (or last field if only one field exists).
 
 BEGIN {
     flag = 0
