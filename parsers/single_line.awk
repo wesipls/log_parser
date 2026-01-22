@@ -24,9 +24,9 @@ BEGIN {
 }
 
 {
-    if (($0 ~ err1 || $0 ~ err2 || $0 ~ err3 || $0 ~ err4) && !a[$(NF?NF-1:NF)]++) {
-      a[$(NF?NF-1:NF)] = $0
-      b[sort++] = $(NF?NF-1:NF)
+    if (($0 ~ err1 || $0 ~ err2 || $0 ~ err3 || $0 ~ err4) && !(a[$0]++)) {
+        a[$0] = $0
+        b[sort++] = $0
     }
 }
 
