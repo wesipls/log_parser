@@ -9,13 +9,13 @@
 # b = array for storing order of unique identifiers
 
 BEGIN {
-    if (!(err_match != "")) {
+    if (!(err1 != "")) {
         exit
     }
 }
 
 {
-    if ($0 ~ err_match && !a[$(NF?NF-1:NF)]++) {
+    if (($0 ~ err1 || $0 ~ err2) && !a[$(NF?NF-1:NF)]++) {
       a[$(NF?NF-1:NF)] = $0
       b[sort++] = $(NF?NF-1:NF)
     }
