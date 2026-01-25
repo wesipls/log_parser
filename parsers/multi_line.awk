@@ -2,9 +2,11 @@
 
 # Usage: ./multi_line.awk -v start="START_PATTERN" -v end="END_PATTERN" input_file
 # Also supports optional start2 and start3 patterns if you need more regex matches.
+# To enable case insensitive matching, pass ignore_case="yes" as a variable.
 #
 # Prints everything between lines matching START_PATTERN and END_PATTERN.
 # Checking for duplicates based on the second to last field (or last field if only one field exists).
+#
 #
 # Usually multi line errors tend to look something like follows:
 #
@@ -30,7 +32,9 @@ BEGIN {
     if (!start3) {
       start3 = "^$";
     }
-
+    if (ignore_case == "yes") {
+      IGNORECASE = 1;
+    }
 }
 
 $0 ~ start {
