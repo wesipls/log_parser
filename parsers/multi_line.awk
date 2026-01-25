@@ -27,10 +27,10 @@ BEGIN {
     if ((!start_pattern_1) || (!end_pattern)) {
       exit 1
     }
-    if (!start_pattern_2) {
+    if (!start_pattern_2 || start_pattern_2 == "") {
       start_pattern_2 = "^$";
     }
-    if (!start_pattern_3) {
+    if (!start_pattern_3 || start_pattern_3 == "") {
       start_pattern_3 = "^$";
     }
     if (ignore_case == "yes") {

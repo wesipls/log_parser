@@ -13,16 +13,16 @@
 # Sticking to simple if statments here
 
 BEGIN {
-    if (!error_pattern_1) {
+    if (!error_pattern_1 || error_pattern_1 == "") {
         error_pattern_1 = "^$";
     }
-    if (!error_pattern_2) {
+    if (!error_pattern_2 || error_pattern_2 == "") {
         error_pattern_2 = "^$";
     }
-    if (!error_pattern_3) {
+    if (!error_pattern_3 || error_pattern_3 == "") {
         error_pattern_3 = "^$";
     }
-    if (!error_pattern_4) {
+    if (!error_pattern_4 || error_pattern_4 == "") {
         error_pattern_4 = "^$";
     }
     if (ignore_case == "yes") {
