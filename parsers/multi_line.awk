@@ -1,7 +1,7 @@
 #!/usr/bin/awk -f
 
-# Usage: ./multi_line.awk -v start_match_1="START_PATTERN" -v end_match="END_PATTERN"  -v output_file="output.txt" input_file
-# Also supports optional start_match_2 and start_match_3 patterns if you need more regex matches.
+# Usage: ./multi_line.awk -v start_pattern_1="START_PATTERN" -v end_pattern="END_PATTERN"  -v output_file="output.txt" input_file
+# Also supports optional start_pattern_2 and start_pattern_3 patterns if you need more regex matches.
 # To enable case insensitive matching, pass ignore_case="true" as a variable.
 # To print to stdout, skip passing a output_file.
 #
@@ -17,21 +17,21 @@
 # maybe everything has crashed
 # ==================================================
 #
-# This script ran as: ./multi_line.awk -v start_match_1="ERROR" -v end_match="===" logfile would print everything between the equal signs.
+# This script ran as: ./multi_line.awk -v start_pattern_1="ERROR" -v end_pattern="===" logfile would print everything between the equal signs.
 #
 # If you have any other examples not covered by this script, please open an issue on GitHub.
 
 BEGIN {
     flag = 0
 
-    if ((!start_match_1) || (!end_match)) {
+    if ((!start_pattern_1) || (!end_pattern)) {
       exit 1
     }
-    if (!start_match_2) {
-      start_match_2 = "^$";
+    if (!start_pattern_2) {
+      start_pattern_2 = "^$";
     }
-    if (!start_match_3) {
-      start_match_3 = "^$";
+    if (!start_pattern_3) {
+      start_pattern_3 = "^$";
     }
     if (ignore_case == "yes") {
       IGNORECASE = 1;
@@ -43,16 +43,16 @@ BEGIN {
     }
 }
 
-$0 ~ start_match_1 {
+$0 ~ start_pattern_1 {
     flag = 1
 }
-$0 ~ start_match_2 {
+$0 ~ start_pattern_2 {
     flag = 1
 }
-$0 ~ start_match_3 {
+$0 ~ start_pattern_3 {
     flag = 1
 }
-$0 ~ end_match {
+$0 ~ end_pattern {
     flag = 0
 }
 
