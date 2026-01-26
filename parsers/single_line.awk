@@ -70,6 +70,8 @@ BEGIN {
 
 END {
     for (i = 0; i < sort; i++) {
-        print line_check[sorter[i]]
+        if (length(line_check[sorter[i]]) > 0) {
+            print line_check[sorter[i]]
+        }
     }
 }

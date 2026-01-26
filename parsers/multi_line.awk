@@ -89,7 +89,9 @@ flag && !line_count[$(NF ? NF-(control_character ? control_character : 1) : NF)]
 
 END {
     for (i = 1; i <= count; i++) {
-        print sorter[i]
+        if (length(sorter[i]) > 0) {
+            print sorter[i]
+        }
     }
 }
 
