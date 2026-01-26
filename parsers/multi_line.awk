@@ -40,9 +40,6 @@ BEGIN {
     flag = 0
 
     if ((!start_pattern_1) || (!end_pattern)) {
-      exit 1
-    } 
-    if ((!start_pattern_1) || (!end_pattern)) {
         exit 1
     }
 
