@@ -33,7 +33,7 @@ BEGIN {
     if (!start_pattern_3 || start_pattern_3 == "") {
       start_pattern_3 = "^$";
     }
-    if (ignore_case == "yes") {
+    if (ignore_case == "true") {
       IGNORECASE = 1;
     }
     if (output_file) {

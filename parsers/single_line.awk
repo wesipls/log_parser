@@ -2,7 +2,7 @@
 
 # Usage ./single_line.awk -v error_pattern_1="your_regex_here" -v error_pattern_2="other_regex_here" -v output_file="output.txt" input_file
 # Support up to 4 error_patterns
-# To enable case insensitive matching, pass ignore_case="yes" as a variable.
+# To enable case insensitive matching, pass ignore_case="true" as a variable.
 # To print to stdout, skip passing a output_file.
 #
 # Matches each line of $error_pattern_[NUM] and prints only if it has not already been printed once.
@@ -25,7 +25,7 @@ BEGIN {
     if (!error_pattern_4 || error_pattern_4 == "") {
         error_pattern_4 = "^$";
     }
-    if (ignore_case == "yes") {
+    if (ignore_case == "true") {
       IGNORECASE = 1;
     }
     if (output_file) {
