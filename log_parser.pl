@@ -15,7 +15,8 @@ while (my $line = <$fh>) {
     next if $line =~ /^\s*$/;
     next if $line =~ /^\s*#/;
     if ($line =~ /^(\w+)=(.*)$/) {
-        $config{$1} = $2;
+                $config{$1} = $2;
+                $config{$1} =~ s/^\s+//;
     }
 }
 close($fh);
