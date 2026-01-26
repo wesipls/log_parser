@@ -21,17 +21,44 @@
 #
 # If you have any other examples not covered by this script, please open an issue on GitHub.
 
+function escape_meta_chars(pattern) {
+    gsub(/\\/, "\\\\", pattern);
+    gsub(/\./, "\\.", pattern);
+    gsub(/\*/, "\\*", pattern);
+    gsub(/\+/, "\\+", pattern);
+    gsub(/\?/, "\\?", pattern);
+    gsub(/\^/, "\\^", pattern);
+    gsub(/\$/, "\\$", pattern);
+    gsub(/\|/, "\\|", pattern);
+    gsub(/\(\)/, "\\(\\)", pattern);
+    gsub(/\[\]/, "\\[\\]", pattern);
+    gsub(/\{\}/, "\\{\\}", pattern);
+    return pattern;
+}
+
 BEGIN {
     flag = 0
 
     if ((!start_pattern_1) || (!end_pattern)) {
       exit 1
+    } 
+    if ((!start_pattern_1) || (!end_pattern)) {
+        exit 1
     }
+
+    start_pattern_1 = escape_meta_chars(start_pattern_1)
+    end_pattern = escape_meta_chars(end_pattern)
+
     if (!start_pattern_2 || start_pattern_2 == "") {
-      start_pattern_2 = "^$";
+        start_pattern_2 = "^$";
+    } else {
+        start_pattern_2 = escape_meta_chars(start_pattern_2)
     }
+
     if (!start_pattern_3 || start_pattern_3 == "") {
-      start_pattern_3 = "^$";
+        start_pattern_3 = "^$";
+    } else {
+        start_pattern_3 = escape_meta_chars(start_pattern_3)
     }
     if (ignore_case == "true") {
       IGNORECASE = 1;
@@ -56,7 +83,7 @@ $0 ~ end_pattern {
     flag = 0
 }
 
-flag && !line_check[$(NF ? NF-(control_character ? control_character : 1) : NF)]++ {
+flag && !line_count[$(NF ? NF-(control_character ? control_character : 1) : NF)]++ {
     sorter[++count] = $0
 }
 
