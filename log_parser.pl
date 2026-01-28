@@ -4,7 +4,14 @@ use strict;
 use warnings;
 
 my %config;
-my $config_file = $ARGV[1] // 'parser.conf';
+use Getopt::Long;
+
+my $config_file = 'parser.conf';
+my $file_to_parse = '';
+GetOptions(
+    "file=s" => \$file_to_parse,
+    "config=s" => \$config_file
+) or die("Error in command line arguments\n");
 
 open(my $fh, '<', $config_file) or die "Could not open file '$config_file' $!";
 while (my $line = <$fh>) {
@@ -20,12 +27,10 @@ close($fh);
 
 if ($config{'mode'} eq 'single_line') {
     my $args = join(' ', map { "-v $_=\"$config{$_}\"" } grep { $_ ne 'mode' } keys %config);
-    my $file_to_parse = $ARGV[0] // die "Error: Please provide a file to parse as the first argument.";
     $args .= " $file_to_parse";
     system("perl parsers/single_line.awk $args");
 } elsif ($config{'mode'} eq 'multi_line') {
     my $args = join(' ', map { "-v $_=\"$config{$_}\"" } grep { $_ ne 'mode' } keys %config);
-    my $file_to_parse = $ARGV[0] // die "Error: Please provide a file to parse as the first argument.";
     $args .= " $file_to_parse";
     system("perl parsers/multi_line.awk $args");
 } else {
