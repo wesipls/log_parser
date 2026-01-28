@@ -1,14 +1,13 @@
-# Project for parsing error files.
+# log_parser
+A Small collection of scripts to parse log files.  
+Main reason for creating this was to remove duplicate entries when working with log files, notably when using log errors in monitoring software alerts.
 
-> [!NOTE]
-> This program is farm from completed.
-> single_line.awk and multi_line.awk which for now are the core of this project do work.
-> To use them please read the comments in the beginning of each file.
+## Usage
+Check the configuration file and modify it to your needs.  
+Run the script as follows: ./LogParser.pl --file (file or direcotry to parse) [--config (config file, default: LogParser.conf)]  
+The output will be redirected to stdout.  
 
+For now there are sill some features that have not been implemented, but they can easily be replaced with bash.  
+To get the output to file just add redirect it by adding `> report.log` at the end of the command.  
+The awk scrips can be ran by themselves, usage examples can be found in the comments of said scripts.
 
-Usage examples can be found in the comments of the awk scripts  
-
-## parser/single_line.awk
-Matches single-line error messages.
-## prarser/multi_line.awk
-Matches multi-line error messages.
