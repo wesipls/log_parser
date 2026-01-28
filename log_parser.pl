@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 my %config;
-my $config_file = 'parser.conf';
+my $config_file = $ARGV[1] // 'parser.conf';
 
 open(my $fh, '<', $config_file) or die "Could not open file '$config_file' $!";
 while (my $line = <$fh>) {
