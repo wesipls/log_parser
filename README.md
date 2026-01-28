@@ -1,11 +1,14 @@
 # log_parser
 A Small collection of scripts to parse log files.  
+  
 Main reason for creating this was to remove duplicate entries when working with log files, notably when using log errors in monitoring software alerts.
 
 ## Usage
 Check the configuration file and modify it to your needs.  
 Run the script as follows:  
+  
 `./LogParser.pl --file (file or direcotry) --config (config file)`  
+  
 If no config file is provided the script will use parser.conf in the current directory.
 The output will be redirected to stdout.  
 
